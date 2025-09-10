@@ -1,0 +1,83 @@
+﻿Parameter,Definition
+Policy name,"The official name of the policy, usually found at the beginning of each policy as a header"
+Issuing year,The year the policy was officially issued. It may be stated in the policy name or identified from the its publication date found within the document
+Policy summary,"A concise overview of the policy, outlining its purpose, key objectives, intended impact, etc. It provides a high-level understanding of what the policy aims to address "
+Goals,The high-level aims the policy wants to achieve (more qualitative); e.g. to attract foreign investment
+Objectives,"Specific, actionable, and measurable targets that the policy aims to achieve (more quantitative); e.g. increase funding available for incentive programs by AED x; increase FDI growth by 2%, etc."
+Situation analysis (context),The background or reasons why the policy was needed establishing the context for it e.g. historically growth in the sector has been primarily funded by public sector investment and AD has an interest to increase private sector participation to offset/minimize this
+Legislative instrument,"The legal tool used to enforce the policy
+This must be tagged to one of the following options:
+1. UAE Constitution: The highest source of all legislation in the country, establishing the general foundations of the legal and legislative system (we will not get examples of this)
+2. Federal Law: Issued by the Federal National Council and ratified by the President of the State
+3. Decree by Law: Issued directly by the President of the State in urgent cases that do not allow for delays (such as during periods when the Federal National Council is not in session), and they carry the force of law
+4. Federal Regulation and Decision: Issued by the Cabinet or relevant federal regulatory authorities to implement and interpret federal laws
+5. Local Law of the Emirate of Abu Dhabi: Issued by the Ruler of the Emirate to regulate local matters, provided they do not conflict with federal laws
+6. Amiri Decree: Issued by the Ruler of Abu Dhabi to address specific matters within the Emirate
+7. Executive Council Decisions for the Emirate of Abu Dhabi: Issued by the Executive Council, addressing public policies and executive procedures within the Emirate
+8. Executive Regulation and Local Regulatory Decision: Issued by relevant government entities, such as the Department of Economic Development, to regulate economic and administrative activities in accordance with applicable laws
+
+"
+Federal/ Emirate,"Whether the policy is developed on the federal level or just the Emirate of Abu Dhabi's level
+This must be tagged to one of the following options:
+1. Federal
+2.Emirate"
+Region,"The geographical area covered by the policy
+This must be tagged to one of the following options:
+1. All
+2. Abu Dhabi City
+3. Al Ain
+4. Al Dhafra
+5. Abu Dhabi City & Al Ain
+6. Al Ain & Al Dhafra
+7. Abu Dhabi City & Al Dhafra
+"
+Jurisdiction,"The legal or regulatory scope within which the policy applies, such as specific geographic areas or economic zones (e.g., mainland, freezone, island)
+This must be tagged to one of the following:
+1. All
+2. Mainland
+3. Freezone
+4. Island"
+Sector,"The sector this policy affects
+This must be tagged to one of the following options:
+1. Multi-sector (if it affects more than one sector)
+2. Mining and Quarrying
+3. Wholesale and Retail Trade
+4. Manufacturing
+5. Financial and Insurance Services 
+6. Construction
+7. Real Estate Activities
+8. Public Administration and Defense
+9. Transportation and Storage
+10. Professional, Scientific and Technical Activities and Administrative and Support Services
+11. Information and Communication
+12. Electricity, gas, and Water Supply; Waste Management Activities
+13. Accommodation and Food Service Activities
+14. Education
+15. Human Health and Social work Activities
+16. Agriculture, Forestry and Fishing
+17. Activities of Households as Employers
+18. Arts, Recreation and Other Service Activities
+"
+Metrics (KPIs in policies),Key performance indicators (KPIs) used to measure policy performance
+Policy owner,The government entity that owns the policy (should be a single entity)
+Stakeholders involved,Government entities that play a role in developing the policy but do not have primary ownership or responsibility (any other entities referenced in the policy)
+Thematic categorization," The general theme the policy falls under
+This must be tagged to one of the following options: 
+1. Non oil GDP growth
+2. Priority clusters growth
+3.Digital economy expansion
+4. Non oil exports growth
+5. Regional development
+6. FDI growth
+7. Incentive programs
+8. Government revenue growth
+9. Government efficiency (spending)
+10. Ease of doing business
+11. Cost of doing business
+12. (High) skilled workforce growth
+13. Employment (job creation)
+14. Emiratization level
+15. Finance access improvement
+16. Innovation and R&D investment
+17. Mega infrastructure development
+18. Cost of living"

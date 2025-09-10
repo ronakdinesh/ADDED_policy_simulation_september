@@ -1,0 +1,38 @@
+# Azure OpenAI Configuration
+# Copy this content to a .env file and fill in your actual values
+
+# Required: Your Azure OpenAI API Key
+AZURE_OPENAI_API_KEY=your_azure_openai_api_key_here
+
+# Required: Your Azure OpenAI Endpoint URL
+# Example: https://your-resource-name.openai.azure.com/
+AZURE_OPENAI_ENDPOINT=https://teams-ai-agent.openai.azure.com/
+
+# Required: Azure OpenAI API Version
+# Use the latest available version for best performance
+OPENAI_API_VERSION=2024-12-01-preview
+
+# Required: Your deployed model name (deployment name in Azure)
+# Example: gpt-4, gpt-35-turbo, gpt-5, etc.
+OPENAI_MODEL_NAME=gpt-5
+
+# Optional: Maximum number of concurrent API requests
+# Adjust based on your rate limits and performance needs
+LLM_CONCURRENCY=12
+
+# Azure Translator Service (Optional - for document translation)
+# Required only if you need to translate Arabic documents to English
+AZURE_TRANSLATOR_KEY=your_azure_translator_api_key_here
+AZURE_TRANSLATOR_LOCATION=global
+
+# Translation settings (Optional)
+TRANSLATE_CONCURRENCY=4
+
+# Instructions:
+# 1. Create a .env file: touch .env
+# 2. Copy the content above to your .env file
+# 3. Fill in your actual Azure credentials:
+#    - Azure OpenAI credentials are REQUIRED
+#    - Azure Translator credentials are OPTIONAL (only needed for translation)
+# 4. Run the health check: python api_health_check.py
+# 5. Ensure all tests pass before running the main application

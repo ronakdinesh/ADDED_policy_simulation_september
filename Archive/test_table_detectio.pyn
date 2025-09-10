@@ -1,0 +1,110 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Test script for table detection using the detect_tables_with_img2table function
+"""
+
+import os
+import sys
+import logging
+from pprint import pprint
+import pandas as pd
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
+# Import the table detection function from utils
+from utils import detect_tables_with_img2table
+
+# Check if img2table is available for direct comparison
+try:
+    from img2table.document import PDF
+    from img2table.ocr import TesseractOCR
+    HAS_IMG2TABLE = True
+except ImportError:
+    logger.warning("img2table not installed. Install with: pip install img2table")
+    HAS_IMG2TABLE = False
+
+# Define the document path
+doc_path = "/Users/karthik/Projects/Github/doc-agent-policy/Docs/Gazette /1st Arabic 2025.pdf"
+
+# Define the pages to analyze (0-indexed)
+# Note: The original script used page 37 in 1-indexed format, so we use 36 in 0-indexed
+page_numbers = [29,30,31,32,33]
+
+# Run the table detection with our wrapper function
+print(f"Detecting tables in document: {doc_path}")
+print(f"Analyzing pages: {[p+1 for p in page_numbers]} (1-indexed)")
+
+tables_by_page = detect_tables_with_img2table(doc_path, page_numbers)
+
+# Display results
+print("\nWrapper Function Results:")
+print(f"Found tables on {len(tables_by_page)} pages")
+
+for page_num, tables in tables_by_page.items():
+    print(f"\nPage {page_num+1} (1-indexed): Found {len(tables)} tables")
+    
+    for i, table in enumerate(tables):
+        print(f"\nTable {i+1}:")
+        print(f"Bounding box: {table['bbox']}")
+        print(f"Confidence: {table['confidence']:.2f}")
+        print(f"Rows: {table.get('row_count', 'unknown')}")
+        print(f"Columns: {table.get('col_count', 'unknown')}")
+        
+        # If markdown is available, display it
+        if "markdown" in table and table["markdown"]:
+            print("\nTable content (markdown):")
+            print(table["markdown"])
+
+# Compare with direct img2table usage (if available)
+if HAS_IMG2TABLE:
+    print("\n" + "="*50)
+    print("COMPARING WITH DIRECT IMG2TABLE USAGE")
+    print("="*50)
+    
+    # Convert 0-indexed page numbers to 1-indexed for img2table
+    img2table_pages = [p+1 for p in page_numbers]
+    
+    # Initialize OCR with Arabic and English support
+    ocr = TesseractOCR(n_threads=1, lang="ara+eng")
+    
+    # Load document
+    doc = PDF(doc_path, detect_rotation=True, pages=img2table_pages)
+    
+    # Extract tables
+    direct_tables = doc.extract_tables(
+        ocr=ocr,
+        implicit_rows=True,
+        implicit_columns=True,
+        borderless_tables=False,
+        min_confidence=70
+    )
+    
+    print(f"\nDirect img2table results:")
+    for page_num, page_tables in direct_tables.items():
+        print(f"Page {page_num}: Found {len(page_tables)} tables")
+        
+        for i, table in enumerate(page_tables):
+            print(f"\nTable {i+1}:")
+            print(f"Bounding box: {table.bbox}")
+            
+            # Display first few rows of the dataframe if available
+            if hasattr(table, "df") and not table.df.empty:
+                print("\nTable preview:")
+                print(table.df.head().to_markdown())
+    
+    # Compare table counts
+    wrapper_count = sum(len(tables) for tables in tables_by_page.values())
+    direct_count = sum(len(tables) for tables in direct_tables.values())
+    
+    print("\nCOMPARISON SUMMARY:")
+    print(f"Wrapper function found: {wrapper_count} tables")
+    print(f"Direct img2table found: {direct_count} tables")
+    print(f"Match: {'Yes' if wrapper_count == direct_count else 'No'}")
+
+print("\nDetection completed.")

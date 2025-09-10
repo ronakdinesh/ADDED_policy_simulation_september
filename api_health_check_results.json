@@ -1,0 +1,64 @@
+{
+  "environment": {
+    "status": "pass",
+    "missing_variables": [],
+    "present_variables": [
+      "AZURE_OPENAI_API_KEY",
+      "AZURE_OPENAI_ENDPOINT",
+      "OPENAI_API_VERSION",
+      "OPENAI_MODEL_NAME"
+    ],
+    "total_required": 4,
+    "total_present": 4,
+    "translator_configured": false,
+    "translator_missing": [
+      "AZURE_TRANSLATOR_KEY",
+      "AZURE_TRANSLATOR_LOCATION"
+    ],
+    "translator_present": []
+  },
+  "connectivity": {
+    "status": "pass",
+    "response_time": 2.35892,
+    "response_content": "",
+    "model": "gpt-5-3",
+    "tokens_used": 68
+  },
+  "model": {
+    "status": "pass",
+    "model": "gpt-5-3",
+    "response": "",
+    "tokens_used": 138
+  },
+  "concurrency": {
+    "status": "pass",
+    "total_requests": 3,
+    "successful_requests": 3,
+    "total_time": 1.845512,
+    "requests_per_second": 1.6255651548188252,
+    "results": [
+      {
+        "id": 1,
+        "status": "success",
+        "content": "",
+        "tokens": 53
+      },
+      {
+        "id": 2,
+        "status": "success",
+        "content": "",
+        "tokens": 53
+      },
+      {
+        "id": 3,
+        "status": "success",
+        "content": "",
+        "tokens": 53
+      }
+    ]
+  },
+  "translator": {
+    "status": "skip",
+    "message": "Azure Translator API key not available - skipping translation test"
+  }
+}

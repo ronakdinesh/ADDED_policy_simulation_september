@@ -1,0 +1,28 @@
+# Azure OpenAI and other Azure dependencies
+openai>=1.3.0
+azure-identity>=1.15.0
+azure-core>=1.30.0
+
+# Pydantic and Pydantic AI
+pydantic>=2.4.0
+pydantic-ai>=0.0.7
+
+# PDF processing
+pymupdf>=1.22.0  # PyMuPDF
+
+# Data processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Environment variables
+python-dotenv>=1.0.0
+
+# Optional: for better handling of complex PDFs
+pytesseract>=0.3.10
+pillow>=10.0.0
+
+# Utilities
+tqdm>=4.66.0  # Progress bars 
+requests>=2.31.0
+orjson>=3.9.0  # Fast JSON processing (3-5x faster than json)
+httpx>=0.25.0  # Async HTTP client

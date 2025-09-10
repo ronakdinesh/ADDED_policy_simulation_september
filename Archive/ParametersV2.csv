@@ -1,0 +1,261 @@
+﻿Parameter,Definition,Extened Definition
+Policy name,"The official name of the policy, usually found at the beginning of each policy as a header","An economic policy is a policy designed to have a direct and intended economic impact i.e. intended and direct impact on GDP = government spending/revenues + investment + consumption + net exports. 
+Examples of such policies include:
+1. Establishing a new governmental entity that generates revenue for the government
+2. Creating an investment zone to attract capital into the Emirate
+3. Policies related to pension funds
+4. Establishing or converting companies into Public Joint Stock Companies (PJSC)
+5. Setting up free zones for industrial or commercial activities
+6. Introducing tolls, tariffs, or fees that contribute to government revenue
+7. Insurance policies
+8. Enhancing governmental capabilities that yield direct economic benefits
+9. Job creation initiatives
+10. Incentive programs
+11. Digitization of government services (less government spending on paper for example)
+
+Exclusions: Policies that do not have a direct economic impact, such as purely governance-related policies, board appointments and reformations, judicial policies, social policies, and strictly environmental policies, are not considered economic policies.
+Examples of such policies include:
+1. Guidelines for Cemetery Organization and Development in Abu Dhabi (Purely social)
+2. Public Transport Regulation Policy (Purely regulatory)
+3. Volunteer Work Policy (Social/ regulatory)
+
+Sample prompt: Please detect whether or not a policy qualifies as economic as per the attached ""economic policy"" definition and state (in the newly created) column B whether it is an economic policy or if it is not an economic policy.For the purpose of identification of policies, please consider the following:
+1. Identification of a unique policy name as per typical templates of naming policy including but not limited to the following examples:
+a. Law No. (XX) of Year YYYY concerning the...
+b. Chairman of the Executive Council Resolution No. (XX) of Year YYYY concerning the...
+c. Executive Council Resolution No. (XX) of Year YYYY concerning the...
+d. Amiri Decree No. (XX) of Year YYYY concerning the...
+e. Circular No. (XX) of Year YYYY concerning the...
+
+2. Identification of unique policies could be undertaken in batches of pages instead of going through the large document all at once (mainly applicable to Gazettes)."
+Relevance,"For policies that have been classified as ""Not A Policy"" we would still want the policy name for our internal review. 
+
+Instead we can create a separate column to identify if a policy has been identified as ""relevant"" or ""not relevant"". 
+
+Further, the name of the policy should be identified as per the guidelines provided in S.No. 2.",
+Issuing year,The year the policy was officially issued. It may be stated in the policy name or identified from the its publication date found within the document,
+Table?,"We would require a new column which identifies if a policy document has any tables or numeric values as it could have an financial/economic implication.
+
+Sample prompt:
+Please go through the policy document in entirety and in a separate column identify as ""Yes"" if the policy document has any specific values, rates, tariffs or tables that could impact the economy. Else, the answer could be ""No"".",
+Policy summary,"We want other policy stakeholders, apart from the policy owner(s), to be identified as explicitly mentioned in the policy document. We do not want the tool to ideate on relevant stakeholders.
+
+Sample prompt:
+Please go through the relevant policy document in entirety and identify any key stakeholders mentioned explicitly in the policy document who would perform a role in the policy implementation. ",
+Goals,The high-level aims the policy wants to achieve (more qualitative); e.g. to attract foreign investment,"We would require the tool to further detail out the summary, objectives and goals of the policy. We want the tool to exhaustively go through the policy and identify all goals and objectives explicitly state in the policy.
+
+Sample prompt:
+Please read through each policy in detail and extract the goals and objectives of each policy as specified in the policy document in bullet formats in the respective columns. Further, if a policy document explicitly uses keywords or section headers such as ""goals"" or ""objectives"", ensure to record a summary of that section in the respective columns."
+Objectives,"Specific, actionable, and measurable targets that the policy aims to achieve (more quantitative); e.g. increase funding available for incentive programs by AED x; increase FDI growth by 2%, etc.","We would require the tool to further detail out the summary, objectives and goals of the policy. We want the tool to exhaustively go through the policy and identify all goals and objectives explicitly state in the policy.
+
+Sample prompt:
+Please read through each policy in detail and extract the goals and objectives of each policy as specified in the policy document in bullet formats in the respective columns. Further, if a policy document explicitly uses keywords or section headers such as ""goals"" or ""objectives"", ensure to record a summary of that section in the respective columns."
+Situation analysis (context),The background or reasons why the policy was needed establishing the context for it e.g. historically growth in the sector has been primarily funded by public sector investment and AD has an interest to increase private sector participation to offset/minimize this,
+Legislative instrument,"The legal tool used to enforce the policy
+This must be tagged to one of the following options:
+1. UAE Constitution: The highest source of all legislation in the country, establishing the general foundations of the legal and legislative system (we will not get examples of this)
+2. Federal Law: Issued by the Federal National Council and ratified by the President of the State
+3. Decree by Law: Issued directly by the President of the State in urgent cases that do not allow for delays (such as during periods when the Federal National Council is not in session), and they carry the force of law
+4. Federal Regulation and Decision: Issued by the Cabinet or relevant federal regulatory authorities to implement and interpret federal laws
+5. Local Law of the Emirate of Abu Dhabi: Issued by the Ruler of the Emirate to regulate local matters, provided they do not conflict with federal laws
+6. Amiri Decree: Issued by the Ruler of Abu Dhabi to address specific matters within the Emirate
+7. Executive Council Decisions for the Emirate of Abu Dhabi: Issued by the Executive Council, addressing public policies and executive procedures within the Emirate
+8. Executive Regulation and Local Regulatory Decision: Issued by relevant government entities, such as the Department of Economic Development, to regulate economic and administrative activities in accordance with applicable laws
+
+","USe these mappings -----> Legislative instrument - >	Mapping
+UAE Constitution->	NA
+Federal Law -> 	Federal Law
+Decree by Law - >	NA
+Federal Regulation and Decision ->	Cabinet Resolution 
+Local Law of the Emirate of Abu Dhabi ->	Law 
+Amiri Decree	-> Amiri Decree
+Executive Council Decisions for the Emirate of Abu Dhabi	- >Executive Council Resolution, Circular 
+Executive Regulation and Local Regulatory Decision - >	Regulatory Policy"
+Federal/ Emirate,"Whether the policy is developed on the federal level or just the Emirate of Abu Dhabi's level
+This must be tagged to one of the following options:
+1. Federal
+2.Emirate",
+Region,"The geographical area covered by the policy would be as follows:
+1. All (Emirate of Abu Dhabi, Abu Dhabi)
+2. Abu Dhabi City
+3. Al Ain
+4. Al Dhafra
+5. Abu Dhabi City & Al Ain
+6. Al Ain & Al Dhafra
+7. Abu Dhabi City & Al Dhafra
+
+Sample prompt:
+If the policy explicitly states that its authority is limited to Abu Dhabi City, Al Ain, Al Dhafra, Abu Dhabi City & Al Ain, Abu Dhabi City & Al Dhafra, or Al Ain & Al Dhafra, mention the specified region accordingly. Otherwise, if the policy refers to the entire Emirate of Abu Dhabi, simply mentions ""Abu Dhabi,"" or does not specify a region, classify it as ""All"".",
+Jurisdiction,"The Jurisdiction in the Emirate of Abu Dhabi are as follows:
+Mainland:
+1. Ain Al Faydah
+2. Al Dhahir
+3. Al Falah
+4. Al Khibeesi
+5. Al Rawdah Al Sharqiyah
+6. Al Shamkhah
+7. Bani Yas
+8. Madinat Al Riyad
+9. Mayzad
+10. Mbazzarah Al Khadra
+11. Mohamed Bin Zayed City
+12. Shakhbout City
+13. Shi'bat Al Wutah
+14. Abu Dhabi Island
+
+Freezone:
+1. Abu Dhabi Global Market (ADGM)
+2. Khalifa Economic Zones Abu Dhabi (KEZAD)
+3. Masdar City Free Zone
+4. Twofour54
+5. Industrial City of Abu Dhabi (ICAD)
+6. Higher Corporation for Specialized Economic Zones (ZonesCorp)
+7. Abu Dhabi Airport Free Zone (ADAFZ)
+
+Island:
+1. Al Khalidiyah
+2. Al Manhal
+3. Hadbat Al Za'faranah
+
+Sample prompt: If the policy states that its jurisdiction authority is strictly for ""mainland"" or one of the listed mainland areas as per the attached (above) then classify it as mainland.  If the policy states that its jurisdiction authority is strictly for ""freezone"" or one of the listed freezones areas as per the attached (above) then classify it as freezone.  If the policy states that its jurisdiction authority is strictly for ""island"" or one of the listed island areas as per the attached (above) then classify it as island. If the policy states that its jurisdiction authority is for the Emirate of Abu Dhabi then classify it as ""All"". If the policy doesn't state any of the previous then classify it as ""All"".",
+Sector,"The sector this policy affects
+This must be tagged to one of the following options:
+1. Multi-sector (if it affects more than one sector)
+2. Mining and Quarrying
+3. Wholesale and Retail Trade
+4. Manufacturing
+5. Financial and Insurance Services 
+6. Construction
+7. Real Estate Activities
+8. Public Administration and Defense
+9. Transportation and Storage
+10. Professional, Scientific and Technical Activities and Administrative and Support Services
+11. Information and Communication
+12. Electricity, gas, and Water Supply; Waste Management Activities
+13. Accommodation and Food Service Activities
+14. Education
+15. Human Health and Social work Activities
+16. Agriculture, Forestry and Fishing
+17. Activities of Households as Employers
+18. Arts, Recreation and Other Service Activities
+",
+Metrics (KPIs in policies),"We only want the KPIs/metrics that have been explicitly mentioned in the document and do not want the agent to ideate relevant KPIs.
+
+Sample prompt:
+Please go through the relevant policy document in entirety and identify any performance indicators explicitly stated in the document. The relevant trigger phrases could be ""key performance indicators"", ""KPIs"", ""performance metrics"", ""success measures"", ""performance targets"", ""impact metrics"", others.",
+Policy owner,"We want the policy owners to be identified as per the pre-identified list of stakeholders on the ""Policy owners"" sheet.
+Abu Dhabi Department of Economic Development (ADDED/DED)
+Abu Dhabi Investment Office (ADIO)
+Department of Municipalities and Transport (DMT)
+Abu Dhabi National Oil Company (ADNOC)
+Abu Dhabi Pension Fund (ADPF)
+Abu Dhabi Department of Health (AD DoH)
+Abu Dhabi Executive Office (ADEO)/ Executive Council
+Supreme Council for Financial and Economic Affairs (SCFEA)
+Abu Dhabi Accountability Authority (ADAA)
+Abu Dhabi Centre for Projects and Infrastructure (ADPIC)
+Creative Media Authority
+Abu Dhabi Developmental Holding Company (ADQ)
+Abu Dhabi Judicial Department
+Abu Dhabi Media Office
+Abu Dhabi Sports Council
+Department of Government Support
+Al Ain Farms for Livestock Production
+Abu Dhabi Securities Exchange Company (PJSC)
+Abu Dhabi Human Resources Authority
+Advanced Technology Research Council (ATRC)
+Abu Dhabi Ports Company (AD Ports)
+Abu Dhabi Department of Education and Knowledge (ADEK)
+Abu Dhabi Department of Energy (AD DoE)
+Endowments and Minors' Funds Management Authority
+Mubadala
+Musanada
+Abu Dhabi Global Market (ADGM)
+Abu Dhabi Police (AD Police) / Abu Dhabi Police General Headquarters
+Environment Agency Abu Dhabi (EAD)
+Sorbonne University Abu Dhabi
+Emirates College for Advanced Education
+Khalifa University for Science and Technology
+Abu Dhabi Department of Finance (AD DoF)
+International Fund for Houbara Conservation
+Ruler’s Representative Court - Al-Dhafra Region
+Rabdan Academy
+Dar Zayed For Family Care
+Mohammed V University – Abu Dhabi
+Abu Dhabi Center for Arabic Language
+Abu Dhabi Department of Community Development (DCD)
+Emirates Nuclear Energy Corporation
+Abu Dhabi Housing Authority
+Zayed Higher Organization for People of Determination
+Zayed bin Sultan Al Nahyan Charitable & Humanitarian Foundation
+Khalifa Fund for Enterprise Development (KFED)
+National Rehabilitation Centre - Abu Dhabi
+Abu Dhabi Digital Authority
+Abu Dhabi Centre for Sheltering & Humanitarian Care (EWAA)
+Abu Dhabi Civil Defense Authority
+Integrated Transport Centre (ITC)
+Abu Dhabi Equestrian Club
+Mohamed bin Zayed University for Humanities
+Mohamed bin Zayed University of Artificial Intelligence
+Al Ain City Municipality
+Crown Prince Court
+Abu Dhabi Centre for Legal and Community Awareness
+Qasr Al Emarat Company - Abu Dhabi
+Abu Dhabi Early Childhood Authority
+Department of Government Enablement
+Mohamed bin Zayed University for Humanities
+Abu Dhabi Fund for Development
+Department of Government Support
+Abu Dhabi Public Health Centre
+Al Ain Company
+Statistics Centre Abu Dhabi
+Etihad Airways Group
+Modon Properties Company
+Emirates Foundation
+Abu Dhabi Chamber of Commerce and Industry (ADCCI)
+AD Customs
+Zoo & Aquarium Public Institution in Al Ain
+Family Care Authority
+Department of Culture and Tourism (DCT)
+Sample prompt:
+Please go through the relevant policy document in entirety and identify the respective policy owner from the pre-defined list of policy owners and assign the respective policy owner code. In case you cannot find the policy owner in the list, please categorize the policy owner as ""Others"".",
+Stakeholders involved,Government entities that play a role in developing the policy but do not have primary ownership or responsibility (any other entities referenced in the policy),
+Thematic categorization,Non-oil GDP growth,"Policies aimed at diversifying the economy by boosting non-oil sectors such as manufacturing, tourism, trade, and services, ensuring sustainable economic expansion."
+Thematic categorization,Priority clusters growth,"Focused support for key strategic industries as identified in the FALCON strategy as mentioned below:
+1. Resources 
+a) Energy Transition: Clean energy & storage 
+b) Metals & Critical Minerals: Steel, Aluminum, new metals and critical minerals
+c) Chemicals: Olefins, Polyolefins, intermediate and downstream chemicals, inorganic and specialty chemicals
+
+2. Value added services
+a) Financial Services: sustainable finance & SME growth, integrated financial services & insurance, wealth innovation & digital capital markets
+b) Trade & Logistics: multimodal logistics hub, e-commerce & digital infrastructure, specialized supply service
+
+3. Technology
+a) Digital & Technology: AI-powered Cloud & new-Gen Edge, generative AI & low code/no code solutions, virtual cloud & AI-powered RPA as a service
+b) Semi-conductors: advanced materials & manufacturing, power & analog electronics, logic fabrication & design prototyping
+c) Advanced Services & Industries: aeronautics, defense, space
+d) SAVI: land, air, sea
+
+4. Livability
+a) Biotech & Life Sciences: pharma & biotech, med-tech, digital health
+b) Agrifood Growth & Water Abundance: sustainable food systems & innovation, agriculture & supply chain excellence, water technologies & infrastructure
+c) Travel & Tourism: medical & wellness tourism, nature tourism & adventure activities, luxury hospitality
+d Media, Entertainment, Gaming, and Sports: gaming hub, video & music production hub, sports & entertainment hub
+"
+Thematic categorization,Digital economy expansion,"Development of digital infrastructure, e-commerce, fintech, and AI-driven industries to position the economy for future technological advancements."
+Thematic categorization,Non-oil exports growth,"Initiatives to increase international trade competitiveness, enhance export-oriented industries, and open new global market opportunities."
+Thematic categorization,Regional development,"Balanced economic growth across different regions, reducing economic disparities between Al Ain & Al Dhafra and Abu Dhabi City through infrastructure projects, investment incentives, and targeted industrial development."
+Thematic categorization,FDI growth,"Policies to attract foreign direct investment by offering incentives, improving regulatory frameworks, and enhancing investor confidence."
+Thematic categorization,Incentive programs,"Government-led financial and non-financial incentives, such as tax breaks, grants, and subsidies, to encourage investment and business expansion."
+Thematic categorization,Government revenue growth,"Measures to enhance fiscal sustainability by optimizing tax revenues, diversifying income sources, and improving financial management."
+Thematic categorization,Government efficiency (spending),"Strategies to optimize public expenditure, reduce waste, and improve service delivery while maintaining fiscal discipline."
+Thematic categorization,Ease of doing business,"Reforms aimed at simplifying business regulations, reducing bureaucratic hurdles, and enhancing the business environment to attract investment."
+Thematic categorization,Cost of doing business,"Policies to lower operational costs for businesses, including reducing licensing fees, improving infrastructure, and enhancing energy efficiency."
+Thematic categorization,(High) skilled workforce growth,"Investments in education, vocational training, and talent development to create a highly skilled workforce aligned with market needs."
+Thematic categorization,Employment (job creation),"Job creation initiatives through entrepreneurship support, SME development, and labor market reforms to boost employment opportunities."
+Thematic categorization,Emiratization level,"Policies to increase the participation of UAE nationals in the workforce through training programs, incentives, and hiring quotas."
+Thematic categorization,Finance access improvement,"Enhancing access to capital for businesses and individuals through improved banking regulations, credit facilitation, and funding programs."
+Thematic categorization,Innovation and R&D investment,"Promoting research, technological advancements, and innovation through government funding, private sector collaboration, and startup ecosystem support."
+Thematic categorization,Mega infrastructure development,"Large-scale investments in transportation, energy, smart cities, and logistics to enhance economic growth and global competitiveness."
+Thematic categorization,Cost of living,"Policies to regulate housing, utilities, and essential goods prices, ensuring affordability and maintaining a high quality of life."
